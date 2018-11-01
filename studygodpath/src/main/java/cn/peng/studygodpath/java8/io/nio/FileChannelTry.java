@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.nio;
+package cn.peng.studygodpath.java8.io.nio;
 
 import cn.peng.studygodpath.FilePathUtil;
 import org.testng.annotations.Test;
@@ -16,8 +16,6 @@ public class FileChannelTry {
     @Test
     public void write2() {
         try {
-
-
             FileOutputStream fos = new FileOutputStream(new File("out2.txt"));
             byte[] data = "NIO测试写".getBytes(Charset.forName("utf8"));
             long time = System.currentTimeMillis();

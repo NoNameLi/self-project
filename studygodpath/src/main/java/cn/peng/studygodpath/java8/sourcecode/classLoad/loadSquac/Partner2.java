@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.sourcecode.classLoadSquac;
+package cn.peng.studygodpath.java8.sourcecode.classLoad.loadSquac;
 
 /**
  * Created by remote on 2017/9/28.

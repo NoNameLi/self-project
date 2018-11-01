@@ -9,6 +9,7 @@
  *  ctrl + n 按名字搜索类
  *  ctrl + alt + L 格式化
  *  ctrl + p 构造参数提示
+ *  ctrl + alt + b/鼠标左键 implements （可以查看方法 、 类的实现）
  *
  *  自动清除无效 import : setting -> general->auto import -> optimize import on the fly 勾选
  */

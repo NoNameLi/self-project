@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.nio;
+package cn.peng.studygodpath.java8.io.nio;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -26,6 +26,7 @@ public class PipTry {
                   }
               }
             };
+            thread.start();
 
         } catch (IOException e) {
             e.printStackTrace();
