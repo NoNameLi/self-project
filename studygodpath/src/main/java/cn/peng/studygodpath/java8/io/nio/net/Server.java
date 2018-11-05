@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.io.nio;
+package cn.peng.studygodpath.java8.io.nio.net;
 
 public class Server {
 
@@ -14,5 +14,10 @@ public class Server {
             serverHandle.stop();
         serverHandle = new ServerHandle_NIO(port);
         new Thread(serverHandle, "Server").start();
+    }
+
+
+    public static void main(String[] args) {
+        Server.start();
     }
 }

@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.io.nio;
+package cn.peng.studygodpath.java8.io.nio.net;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -22,6 +22,7 @@ public class ClientHandle_NIO implements Runnable {
     public ClientHandle_NIO(String ip, int port) {
         this.ip = ip;
         this.port = port;
+        this.initClient();
     }
 
     public void initClient() {
@@ -85,8 +86,10 @@ public class ClientHandle_NIO implements Runnable {
         if (key.isValid()) {
             SocketChannel socketChannel = (SocketChannel) key.channel();
             if (key.isConnectable()) {
-                if (!socketChannel.finishConnect()) {
-                    System.exit(1);
+                if(socketChannel.isConnectionPending()){
+                    socketChannel.finishConnect();
+                    System.out.println("client is finish connect");
+                    this.send("1+2*6");
                 }
             }
             if (key.isReadable()) {
@@ -113,6 +116,18 @@ public class ClientHandle_NIO implements Runnable {
         } else if (readLength < 0) {
             key.cancel();
             socketChannel.close();
+        }
+    }
+
+
+    public void send(String context) {
+        try {
+            socketChannel.register(selector, SelectionKey.OP_READ);
+            ChannelUtil.write(socketChannel, context);
+        } catch (ClosedChannelException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

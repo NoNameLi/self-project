@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.io.nio;
+package cn.peng.studygodpath.java8.io.nio.net;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

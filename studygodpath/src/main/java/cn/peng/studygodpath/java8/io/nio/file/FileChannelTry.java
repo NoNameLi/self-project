@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.io.nio;
+package cn.peng.studygodpath.java8.io.nio.file;
 
 import cn.peng.studygodpath.FilePathUtil;
 import org.testng.annotations.Test;

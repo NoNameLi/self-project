@@ -1,4 +1,6 @@
-package cn.peng.studygodpath.java8.io.nio;
+package cn.peng.studygodpath.java8.io.nio.net;
+
+import java.util.Random;
 
 public class Client {
 
@@ -16,5 +18,17 @@ public class Client {
             clientHandle.stop();
         clientHandle = new ClientHandle_NIO(ip, port);
         new Thread(clientHandle, "Client").start();
+    }
+
+    public static void send(String context) {
+        clientHandle.send(context);
+    }
+
+    public static void main(String[] args) {
+        /** 客户端*/
+//        char operators[] = {'+', '-', '*', '/'};
+//        Random random = new Random(System.currentTimeMillis());
+        Client.start();
+       // Client.send(random.nextInt(10) + "" + operators[random.nextInt(4)] + (random.nextInt(10) + 1));
     }
 }
