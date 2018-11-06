@@ -26,9 +26,15 @@ public class Client {
 
     public static void main(String[] args) {
         /** 客户端*/
-//        char operators[] = {'+', '-', '*', '/'};
-//        Random random = new Random(System.currentTimeMillis());
+        char operators[] = {'+', '-', '*', '/'};
+        Random random = new Random(System.currentTimeMillis());
         Client.start();
-       // Client.send(random.nextInt(10) + "" + operators[random.nextInt(4)] + (random.nextInt(10) + 1));
+        // 客户端初始化
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Client.send(random.nextInt(10) + "" + operators[random.nextInt(4)] + (random.nextInt(10) + 1));
     }
 }

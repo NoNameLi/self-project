@@ -1,5 +1,7 @@
 package cn.peng.studygodpath.java8.io.nio.net;
 
+import org.hibernate.dialect.lock.SelectLockingStrategy;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -47,8 +49,9 @@ public class ClientHandle_NIO implements Runnable {
     @Override
     public void run() {
         try {
-            boolean connectFlag = socketChannel.connect(new InetSocketAddress(this.ip, this.port));
-            if (!connectFlag) {
+            if (socketChannel.connect(new InetSocketAddress(this.ip, this.port))) {
+                socketChannel.register(selector, SelectionKey.OP_READ);
+            } else {
                 socketChannel.register(selector, SelectionKey.OP_CONNECT);
             }
             while (status) {
@@ -59,7 +62,7 @@ public class ClientHandle_NIO implements Runnable {
                     SelectionKey key = keyIterator.next();
                     keyIterator.remove();
                     // 处理
-                    handleAccept(key);
+                    handleProcess(key);
                 }
             }
         } catch (IOException e) {
@@ -73,7 +76,14 @@ public class ClientHandle_NIO implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
 
+    private void handleProcess(SelectionKey key) throws IOException {
+        if (key.isConnectable()) {
+            handleConnect(key);
+        } else if (key.isReadable()) {
+            handleRead(key);
+        }
     }
 
     /**
@@ -82,19 +92,16 @@ public class ClientHandle_NIO implements Runnable {
      * @param key
      * @throws IOException
      */
-    private void handleAccept(SelectionKey key) throws IOException {
-        if (key.isValid()) {
-            SocketChannel socketChannel = (SocketChannel) key.channel();
-            if (key.isConnectable()) {
-                if(socketChannel.isConnectionPending()){
-                    socketChannel.finishConnect();
-                    System.out.println("client is finish connect");
-                    this.send("1+2*6");
-                }
+    private void handleConnect(SelectionKey key) throws IOException {
+        SocketChannel socketChannel = (SocketChannel) key.channel();
+        if (socketChannel.isConnectionPending()) {
+            if (socketChannel.finishConnect()) {
+                socketChannel.register(selector, SelectionKey.OP_READ);
+                System.out.println("client is finish connect" + System.currentTimeMillis());
+            } else {
+                System.exit(1);
             }
-            if (key.isReadable()) {
-                this.handleRead(key);
-            }
+
         }
     }
 
@@ -112,17 +119,18 @@ public class ClientHandle_NIO implements Runnable {
             //根据缓冲区可读字节数创建字节数组
             byte[] data = new byte[bb.remaining()];
             bb.get(data);
-            System.out.println("客户端收到消息：" + new String(data));
+            System.out.println("客户端收到消息：" + new String(data, "UTF-8"));
         } else if (readLength < 0) {
             key.cancel();
             socketChannel.close();
         }
+        key.interestOps(SelectionKey.OP_READ);
     }
 
 
     public void send(String context) {
         try {
-            socketChannel.register(selector, SelectionKey.OP_READ);
+            System.out.println(System.currentTimeMillis());
             ChannelUtil.write(socketChannel, context);
         } catch (ClosedChannelException e) {
             e.printStackTrace();
@@ -130,6 +138,4 @@ public class ClientHandle_NIO implements Runnable {
             e.printStackTrace();
         }
     }
-
-
 }
