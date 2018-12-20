@@ -12,6 +12,6 @@
     <modules>
         <module>./studygodpath</module>
         <module>./mini-spring</module>
-        <module>Jerseyrestdemo</module>
+        <module>./Jerseyrestdemo</module>
     </modules>
 </project>
