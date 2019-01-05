@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.easyexecl.usermodel;
+package cn.peng.studygodpath.frame.execl;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellValue;
