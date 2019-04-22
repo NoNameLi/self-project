@@ -10,6 +10,9 @@ import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
 import java.util.List;
 
+/**
+ * 广播消息
+ */
 public class ConsumerA{
 
     public static void main(String[] args) {
