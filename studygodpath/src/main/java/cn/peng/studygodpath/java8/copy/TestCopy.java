@@ -4,8 +4,9 @@ import org.junit.Test;
 
 public class TestCopy {
 
-    // @Test
+    @Test
     public void test() {
+        // 测试方法参数是值传递 还是 引用传递
         ObjRef oRef = new ObjRef();
         System.out.println("Before call changeObj() method: " + oRef.aObj);
         oRef.changeObj(oRef.aObj);
