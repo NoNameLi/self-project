@@ -16,7 +16,7 @@ public class Childer extends Partner {
         System.out.println("chiider 代码块...");
     }
 
-    public String ss1 = prtString("B的成员变量...");
+    public String ss1 = prtString("chiider 的成员变量...");
 
     public Childer() {
         System.out.println("chiider 的构造函数...");

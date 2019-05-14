@@ -13,17 +13,24 @@ public class TestMethod {
 
 
     @Test
-    public  void abstractMethod(){
+    public void abstractMethod() {
         ExtendsChildren children = new ExtendsChildren();
         children.hello();
     }
 
-
+    @Test
+    public void childrenCallParentStatic() {
+        Children ch = new Children();
+        ch.add();
+    }
 
     @Test
-    public void childrenCallParentStatic(){
-        Children  ch = new Children();
-        ch.add();
+    public void testParentChildrenMehtod() {
+        Children children = new Children();
+        Parent parent = children;
+        System.out.println(children.getName());
+        System.out.println(parent.getName());
+        System.out.println(children.equals(parent));
     }
 
 

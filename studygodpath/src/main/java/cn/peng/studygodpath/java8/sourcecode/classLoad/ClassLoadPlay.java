@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.java8.classload;
+package cn.peng.studygodpath.java8.sourcecode.classLoad;
 
 public class ClassLoadPlay {
 

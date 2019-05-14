@@ -15,6 +15,10 @@ public class TestClassLoader {
 
     @Test
     public void testClassLoadSquac() {
+        System.out.println("class 加载顺序：");
+        Class clazz = Childer.class;
+        System.out.println(Childer.ss2);
+        System.out.println("实例化顺序：");
         new Childer();
     }
 
