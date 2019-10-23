@@ -2,6 +2,9 @@ package cn.peng.studygodpath.java8;
 
 import org.testng.annotations.Test;
 
+/**
+ * 自增前 后
+ */
 public class AddBeforAfter {
 
     static {
