@@ -8,10 +8,86 @@
     <artifactId>all-project</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    
+
     <modules>
         <module>./studygodpath</module>
         <module>./mini-spring</module>
         <module>./Jerseyrestdemo</module>
+        <module>./nacos-example</module>
     </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!--plugin version-->
+        <jetty.plugin.version>9.4.21.v20190926</jetty.plugin.version>
+
+        <!--third package-->
+        <spring.framework.version>5.1.5.RELEASE</spring.framework.version>
+        <nacos-spring-context.version>0.3.3</nacos-spring-context.version>
+        <lombok.version>1.18.10</lombok.version>
+        <servlet-api.version>4.0.1</servlet-api.version>
+    </properties>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!--******************工具包 start******************-->
+            <!--lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!--servlet-->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!--******************工具包 end******************-->
+
+            <!--******************nacos start******************-->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-spring-context</artifactId>
+                <version>${nacos-spring-context.version}</version>
+            </dependency>
+            <!--******************nacos end******************-->
+
+            <!--******************spring start******************-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.framework.version}</version>
+            </dependency>
+            <!--******************spring end******************-->
+        </dependencies>
+    </dependencyManagement>
 </project>

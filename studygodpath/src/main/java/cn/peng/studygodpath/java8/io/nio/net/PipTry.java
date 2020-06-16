@@ -16,18 +16,30 @@ public class PipTry {
             final Pipe.SinkChannel psic = pipe.sink();
             final Pipe.SourceChannel psoc = pipe.source();
 
-            Thread thread = new Thread(){
-              public void run(){
-                  try {
-                      psic.write(ByteBuffer.wrap("Hello Pope".getBytes()));//"utf-16BE"
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        psic.write(ByteBuffer.wrap("Hello Pope".getBytes()));//"utf-16BE"
 
-                  } catch (IOException e) {
-                      e.printStackTrace();
-                  }
-              }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             };
-            thread.start();
+            Thread readThread = new Thread() {
+                public void run() {
+                    ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+                    try {
+                        psoc.read(byteBuffer);
+                        System.out.println(new String(byteBuffer.array()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
 
+            thread.start();
+            readThread.start();
         } catch (IOException e) {
             e.printStackTrace();
         }

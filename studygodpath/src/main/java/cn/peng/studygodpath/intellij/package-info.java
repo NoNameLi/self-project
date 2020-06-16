@@ -12,6 +12,7 @@
  * ctrl + alt + b/鼠标左键 implements （可以查看方法 、 类的实现）
  * ctrl + d 快速复制当前行
  * ctrl + shift + enter 完成当前行，快速添加分号
+ * ctrl + H 查看类的子类
  * <p>
  * 自动清除无效 import : setting -> general->auto import -> optimize import on the fly 勾选
  */
