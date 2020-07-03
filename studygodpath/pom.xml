@@ -34,7 +34,7 @@
         <netty.version>4.1.9.Final</netty.version>
         <rocketmq.version>4.3.0</rocketmq.version>
         <poi.version>3.17</poi.version>
-        <shiro.version>1.2.5</shiro.version>
+        <shiro.version>1.2.3</shiro.version>
     </properties>
 
     <build>
