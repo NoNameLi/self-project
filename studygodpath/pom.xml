@@ -31,7 +31,7 @@
         <redis-version>2.9</redis-version>
         <jmh.version>1.19</jmh.version>
         <jmh.plugin.version>2.0</jmh.plugin.version>
-        <netty.version>4.1.9.Final</netty.version>
+        <netty.version>4.1.42.Final</netty.version>
         <rocketmq.version>4.3.0</rocketmq.version>
         <poi.version>3.17</poi.version>
         <shiro.version>1.2.3</shiro.version>
