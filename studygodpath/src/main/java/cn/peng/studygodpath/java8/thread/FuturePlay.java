@@ -16,17 +16,25 @@ public class FuturePlay {
          * 整合结果 上一阶段 和本阶段的结果
          */
     }
-    public void futureRun(){
+    @Test
+    public void futureRun() throws ExecutionException, InterruptedException {
         /**
          * 无输入无输出
          */
-
+        CompletableFuture one = CompletableFuture.supplyAsync(() -> "one");
+        CompletableFuture two = one.thenRun(() -> System.out.println("then run"));
+        System.out.println(two.get());
     }
 
-    public void futureAccpet(){
+    @Test
+    public void futureAccpet() throws ExecutionException, InterruptedException {
         /**
          * 前一阶段的 输出 当做本阶段的输入 不输出
          */
+
+        CompletableFuture one = CompletableFuture.supplyAsync(() -> "one");
+        CompletableFuture<Void> resutl = one.thenAccept((result) -> System.out.println(result));
+        System.out.println(resutl.get());
 
     }
 
@@ -39,7 +47,7 @@ public class FuturePlay {
          * 前一阶段的 输出 当做本阶段的输入，并输出
          */
         CompletableFuture<String> two = one.thenApplyAsync((result) -> result + ":two");
-        System.out.println(two.get());
+        System.out.println(two.get()); // 输出 one:two
     }
 
 
