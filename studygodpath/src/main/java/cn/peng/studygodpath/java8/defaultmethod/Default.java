@@ -17,7 +17,7 @@ public interface Default {
     }
 
 
-    static void add(){
+    static void interfaceStatisMethod(){
         System.out.println("interface static");
     }
 }
