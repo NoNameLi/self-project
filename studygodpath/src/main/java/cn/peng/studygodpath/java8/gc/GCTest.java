@@ -9,6 +9,31 @@ import org.junit.Test;
  */
 public class GCTest {
 
+    /**
+     * -verbose:gc
+     * -Xmx200M
+     * -Xms200M
+     * -Xmn50M
+     * -XX:+PrintGCDetails
+     * -XX:TargetSurvivorRatio=60 幸存区目标使用率 影响 晋升老年区的年龄
+     * -XX:+PrintTenuringDistribution 幸存区 gc的年龄分布
+     * -XX:+PrintGCDetails gc明细
+     * -XX:+PrintGCDateStamps gc的时间戳
+     * -XX:MaxTenuringThreshold=3 晋升老年代的最大年龄
+     * -XX:+UseConcMarkSweepGC 使用cms回收器
+     * -XX:+UseParNewGC
+     */
+    public static void main(String[] args) {
+        makeGarbage(2);
+        makeGarbage(1);
+        byte[] byte1m_1 = new byte[5 * 128 * 1024];// 此时eden 可以分配 ，都在 eden代，2M + 1M + 0.625M + 空方法占用的内存
+        byte1m_1 = null;
+        byte[] byte1m_2 = new byte[1024 * 1000];// 此时eden不够分配，进行minor gc  2m + 1m 没有引用回收，byte1m_2 进入 from代
+//        byte[] byte1m_3 = new byte[1 * 1024 * 1024];
+//        makeGarbage(1);
+//        System.gc();
+    }
+
     /*
      * 本实例用于java GC以后，新生代survivor区域的变化，以及晋升到老年代的时间和方式的测试代码。需要自行分步注释不需要的代码进行反复测试对比
      *

@@ -1,6 +1,6 @@
 package cn.peng.studygodpath.java8.gc;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 /**
  * @Author: Administrator
@@ -12,8 +12,8 @@ public class MemoryTest {
 
     @Test
     public void printMemory(){
-        System.out.println(Runtime.getRuntime().maxMemory() / 1024 / 1024);
-        System.out.println(Runtime.getRuntime().freeMemory());
-        System.out.println(Runtime.getRuntime().totalMemory());
+//        System.out.println(Runtime.getRuntime().maxMemory() / 1024 / 1024);
+//        System.out.println(Runtime.getRuntime().freeMemory()/ 1024 / 1024);
+//        System.out.println(Runtime.getRuntime().totalMemory()/ 1024 / 1024);
     }
 }
