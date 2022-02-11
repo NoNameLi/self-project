@@ -14,6 +14,7 @@
         <module>./mini-spring</module>
         <module>./Jerseyrestdemo</module>
         <module>./nacos-example</module>
+        <module>./spring-boot-practice</module>
     </modules>
 
     <properties>
