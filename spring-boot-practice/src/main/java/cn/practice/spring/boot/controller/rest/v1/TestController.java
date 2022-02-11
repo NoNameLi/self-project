@@ -1,18 +1,15 @@
-package cn.practice.spring.boot.controller.v1;
+package cn.practice.spring.boot.controller.rest.v1;
 
-import cn.practice.spring.boot.controller.common.ApiResponse;
+import cn.practice.spring.boot.controller.rest.common.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @Author: Administrator
- * @CreateTime:2021-11-01 11:10
- * QDescription:
- */
 @RestController
+@RequestMapping("/rest")
 public class TestController {
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public ApiResponse indexHello() {
         return ApiResponse.success();
     }

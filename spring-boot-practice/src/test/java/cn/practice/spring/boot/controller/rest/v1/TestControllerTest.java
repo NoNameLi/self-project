@@ -1,4 +1,4 @@
-package cn.practice.spring.boot.controller.v1;
+package cn.practice.spring.boot.controller.rest.v1;
 
 import org.junit.Before;
 import org.junit.Test;

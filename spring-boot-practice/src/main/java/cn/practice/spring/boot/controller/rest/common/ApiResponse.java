@@ -1,4 +1,4 @@
-package cn.practice.spring.boot.controller.common;
+package cn.practice.spring.boot.controller.rest.common;
 
 import lombok.Builder;
 import lombok.Data;

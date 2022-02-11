@@ -22,11 +22,19 @@ spring:
       uris: 192.168.0.5:9200
       username:
       password:
+  thymeleaf:
+    cache: true
 
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+    basedir: target/tomcat
 #  security:
 #    user:
 #      name: actuator
 #      password: actuator
 #      roles: ADMIN
-
-
+logging:
+  level:
+    root: info
