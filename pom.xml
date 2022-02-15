@@ -15,6 +15,7 @@
         <module>./Jerseyrestdemo</module>
         <module>./nacos-example</module>
         <module>./spring-boot-practice</module>
+        <module>./webflux</module>
     </modules>
 
     <properties>
