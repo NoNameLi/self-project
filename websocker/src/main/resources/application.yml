@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  devtools:
+    restart:
+      enable: false
+  redis:
+    host: 192.168.1.24
+    port: 6381
+    password:
+    ssl: false
+    jedis:
+      pool:
+        max-idle: 10
+        max-wait: 60000
+redis:
+  channel:
+    msgToAll: webscoker.msgToAll
+    noticeToAll: webscoker.noticeToAll
+

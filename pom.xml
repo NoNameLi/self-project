@@ -16,6 +16,7 @@
         <module>./nacos-example</module>
         <module>./spring-boot-practice</module>
         <module>./webflux</module>
+        <module>./websocker</module>
     </modules>
 
     <properties>
