@@ -24,7 +24,9 @@ public class WebSockerConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         //以“/app”开头的消息应该路由到使用@MessageMapping注释的消息处理方法
         registry.setApplicationDestinationPrefixes("/app");
-        //以“/topic”开头的消息应该路由到消息代理
-        registry.enableSimpleBroker("/topic");
+        //以“/topic”开头的消息应该路由到消息代理  topic和user这两个域上可以向客户端发消息
+        registry.enableSimpleBroker("/topic", "/user");
+        //指定用户发送（一对一）的主题前缀是“/user/”
+        registry.setUserDestinationPrefix("/user");
     }
 }
