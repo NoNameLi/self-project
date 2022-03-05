@@ -19,3 +19,13 @@ redis:
     msgToAll: webscoker.msgToAll
     noticeToAll: webscoker.noticeToAll
 
+socketio:
+  host: localhost
+  port: 9092
+  boss-threads: 1
+  worker-threads: 100
+  is-allow-custom-requests: true
+  upgrade-timeout: 1000000
+  ping-timeout: 5000000
+  ping-interval: 30000
+
