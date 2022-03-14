@@ -7,6 +7,8 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+import javax.websocket.OnMessage;
+
 @Configuration
 @EnableWebSocketMessageBroker//启用WebSocket服务器
 public class WebSockerConfig implements WebSocketMessageBrokerConfigurer {
