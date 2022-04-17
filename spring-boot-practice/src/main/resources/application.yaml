@@ -17,9 +17,12 @@ info:
       version: @java.version@
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
+    banner-mode: off
   elasticsearch:
     rest:
-      uris: 192.168.0.5:9200
+      uris: http://localhost:9200
       username:
       password:
   thymeleaf:

@@ -17,6 +17,7 @@
         <module>./spring-boot-practice</module>
         <module>./webflux</module>
         <module>./websocker</module>
+        <module>jvm-agent</module>
     </modules>
 
     <properties>
