@@ -21,10 +21,10 @@ public class LoginProxyHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("校验参数");
         Object obj = null;
-        try{
+        try {
             obj = method.invoke(trage, args);
             System.out.println("执行结果：" + obj.toString());
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return obj;

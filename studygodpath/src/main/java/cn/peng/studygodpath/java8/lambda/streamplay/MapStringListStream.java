@@ -10,56 +10,59 @@ import java.util.*;
 /**
  * Created by remote on 2018/3/16.
  */
-public class MapStringListStream  implements listStreamInterface{
+public class MapStringListStream implements listStreamInterface {
 
     private List<Map<String, String>> list;
 
     // String数据生产器
-    public class StringProducer implements MapDataProducerInterface<String>{
+    public class StringProducer implements MapDataProducerInterface<String> {
 
         @Override
         public String production(int t) {
             return String.valueOf(t);
         }
     }
+
     // Date数据生产器
-    public class DateProducer implements MapDataProducerInterface<Date>{
+    public class DateProducer implements MapDataProducerInterface<Date> {
 
         @Override
         public Date production(int t) {
-            try {Thread.sleep(1000);} catch (InterruptedException e) {}
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
             return DateTime.now().toDate();
         }
     }
 
-    public void testProducer(MapDataProducerInterface instance){
+    public void testProducer(MapDataProducerInterface instance) {
         List<Map<String, Object>> map = getInit(instance);
         System.out.println(map);
     }
 
     @Test
-    public void testStringProducer(){
-       //testProducer(new StringProducer());
+    public void testStringProducer() {
+        //testProducer(new StringProducer());
         System.out.println(new StringProducer().getTClass());
 
     }
 
     @Test
-    public void testDateProducer(){
+    public void testDateProducer() {
         //testProducer(new DateProducer());
         System.out.println(new DateProducer().getTClass());
     }
 
     @Test
-    public void playStreamFromListMapGetNewestDate(){
+    public void playStreamFromListMapGetNewestDate() {
         DateProducer dateProducer = new DateProducer();
         List<Map<String, Object>> list = getInit(dateProducer);
         // 必须强转 才能调用commpareTO方法 或者 Comparable接口
         Class t = dateProducer.getTClass();
-        list.sort((m1, m2) -> ((Date)m2.get(getProdutObjKey())).compareTo((Date) m1.get(getProdutObjKey())));
+        list.sort((m1, m2) -> ((Date) m2.get(getProdutObjKey())).compareTo((Date) m1.get(getProdutObjKey())));
         System.out.println(Arrays.toString(list.toArray()));
     }
-
 
 
     @Test
@@ -67,7 +70,7 @@ public class MapStringListStream  implements listStreamInterface{
         List<Map<String, Object>> map = getInit(new StringProducer());
 
 
-        Set<Map<String,Object>> set = Sets.newHashSet();
+        Set<Map<String, Object>> set = Sets.newHashSet();
         set.addAll(map);
         System.out.println(getFisrstMathByTradition(map));
         System.out.println(getFitstMatchByStream(map));

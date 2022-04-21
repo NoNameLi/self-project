@@ -77,7 +77,7 @@ public class ChannelPlay {
         fis.close();
     }
 
-
+    // mmap 实现零拷贝，利用虚拟内存，将用户缓冲器 和 内核缓冲区 映射到一个虚拟内存上，减少 内核缓冲区到用户缓冲区的一次拷贝
     public void directCopyFile() throws Exception {
         FileChannel inChannel = FileChannel.open(Paths.get("D:/1.rmvb"), StandardOpenOption.READ);
         FileChannel outChannel = FileChannel.open(Paths.get("D:/2.rmvb"), StandardOpenOption.WRITE, StandardOpenOption.READ);
@@ -88,10 +88,12 @@ public class ChannelPlay {
         byte[] buffer = new byte[inMappedBuffer.limit()];
         inMappedBuffer.get(buffer);
         outMapperBuffer.put(buffer);
+//        outChannel.write(inMappedBuffer);
         inChannel.close();
         outChannel.close();
     }
 
+    // sendFile 实现零拷贝，
     public void channelCopyFile() throws IOException {
         FileChannel inChannel = FileChannel.open(Paths.get("D:/1.rmvb"), StandardOpenOption.READ);
         FileChannel outChannel = FileChannel.open(Paths.get("D:/2.rmvb"), StandardOpenOption.WRITE, StandardOpenOption.READ);
