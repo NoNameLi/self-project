@@ -5,9 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 循环屏障，一组线程互相等待直到所有的线程到达一个共有的屏障点，然后可以做某些操作，等待线程被换醒
@@ -131,5 +129,42 @@ public class CycliBarrierPlay {
         } catch (BrokenBarrierException e) {
             e.printStackTrace();
         }
+    }
+
+    // 请求的数量
+    private static final int threadCount = 550;
+    // 需要同步的线程数量
+    private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+
+    @Test
+    public void test() throws InterruptedException {// 需要同步的线程数量
+        // 创建线程池
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);
+
+        for (int i = 0; i < threadCount; i++) {
+            final int threadNum = i;
+            Thread.sleep(1000);
+            threadPool.execute(() -> {
+                try {
+                    test(threadNum);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        threadPool.shutdown();
+    }
+
+    public static void test(int threadnum) throws InterruptedException, BrokenBarrierException {
+        System.out.println("threadnum:" + threadnum + " is ready");
+        try {
+            /**等待60秒，保证子线程完全执行结束*/
+            cyclicBarrier.await(60, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            System.out.println("-----CyclicBarrierException------");
+        }
+        System.out.println("threadnum:" + threadnum + "is finish");
     }
 }
