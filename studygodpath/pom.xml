@@ -31,7 +31,8 @@
         <redis-version>2.9</redis-version>
         <jmh.version>1.19</jmh.version>
         <jmh.plugin.version>2.0</jmh.plugin.version>
-        <netty.version>4.1.9.Final</netty.version>
+        <netty-all.version>4.1.9.Final</netty-all.version>
+        <netty.version>3.10.6.Final</netty.version>
         <rocketmq.version>4.3.0</rocketmq.version>
         <poi.version>3.17</poi.version>
         <shiro.version>1.2.3</shiro.version>
@@ -282,8 +283,14 @@
 
         <dependency>
             <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
+            <artifactId>netty</artifactId>
             <version>${netty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty-all.version}</version>
         </dependency>
 
         <dependency>

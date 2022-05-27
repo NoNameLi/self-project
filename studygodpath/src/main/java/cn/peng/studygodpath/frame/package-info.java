@@ -8,6 +8,7 @@
  * lombok:      冗余代码消除
  * redis：      jedis使用
  * rocketmq:    rocket学习
+ * netty        netty网络框架
  *
  */
 package cn.peng.studygodpath.frame;
