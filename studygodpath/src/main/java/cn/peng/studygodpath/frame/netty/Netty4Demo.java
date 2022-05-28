@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.Netty;
+package cn.peng.studygodpath.frame.netty;
 
 
 import io.netty.bootstrap.ServerBootstrap;

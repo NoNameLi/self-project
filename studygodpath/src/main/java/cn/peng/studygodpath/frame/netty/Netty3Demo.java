@@ -4,19 +4,23 @@ package cn.peng.studygodpath.frame.netty;
 import cn.peng.studygodpath.frame.netty.handler.PrintHandler;
 import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.channel.ChannelPipeline;
-import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class Netty3Demo {
 
     public static void main(String[] args) {
         ServerBootstrap server = new ServerBootstrap();
-        server.setFactory(new NioServerSocketChannelFactory());
+        ThreadPoolExecutor bossPoll = new ThreadPoolExecutor(2, 2, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(0));
+        ThreadPoolExecutor workerPoll = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<>(100));
+        server.setFactory(new NioServerSocketChannelFactory(bossPoll, workerPoll));
         server.setPipelineFactory(() -> {
             ChannelPipeline pipeline = Channels.pipeline();
             pipeline.addLast("decoder", new StringDecoder());
@@ -26,23 +30,4 @@ public class Netty3Demo {
         });
         server.bind(new InetSocketAddress(1000));
     }
-
-
-//    public static void main(String[] args) throws InterruptedException {
-//        ServerBootstrap server = new ServerBootstrap();
-//        EventLoopGroup boosGroup = new NioEventLoopGroup(1);
-//        EventLoopGroup workerGroup = new NioEventLoopGroup(10);
-//        server.group(boosGroup, workerGroup)
-//                .channel(NioServerSocketChannel.class)
-//                .childHandler(new ChannelInitializer<NioSocketChannel>() {
-//                    @Override
-//                    protected void initChannel(NioSocketChannel ch) throws Exception {
-//                        ch.pipeline().addLast(new DiscardServerHandler());
-//                    }
-//                }).option(ChannelOption.SO_BACKLOG, 128)
-//                .childOption(ChannelOption.SO_KEEPALIVE, true);
-//        server.bind(1000).sync();
-//    }
-
-
 }
