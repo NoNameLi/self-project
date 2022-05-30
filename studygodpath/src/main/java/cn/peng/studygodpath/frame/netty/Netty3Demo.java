@@ -29,5 +29,6 @@ public class Netty3Demo {
             return pipeline;
         });
         server.bind(new InetSocketAddress(1000));
+        server.bind(new InetSocketAddress(2000));
     }
 }
