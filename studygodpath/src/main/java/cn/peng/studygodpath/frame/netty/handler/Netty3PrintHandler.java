@@ -2,7 +2,7 @@ package cn.peng.studygodpath.frame.netty.handler;
 
 import org.jboss.netty.channel.*;
 
-public class PrintHandler extends SimpleChannelHandler {
+public class Netty3PrintHandler extends SimpleChannelHandler {
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
         System.out.println(e.getMessage());
