@@ -36,6 +36,7 @@
         <rocketmq.version>4.3.0</rocketmq.version>
         <poi.version>3.17</poi.version>
         <shiro.version>1.2.3</shiro.version>
+        <protoc.version>3.21.1</protoc.version>
     </properties>
 
     <build>
@@ -315,6 +316,18 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml-schemas</artifactId>
             <version>${poi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protoc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.1</version>
         </dependency>
 
         <dependency>
