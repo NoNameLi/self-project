@@ -8,6 +8,8 @@ import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
+import org.jboss.netty.handler.timeout.IdleStateHandler;
+import org.jboss.netty.util.HashedWheelTimer;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -23,6 +25,7 @@ public class Netty3Demo {
         server.setFactory(new NioServerSocketChannelFactory(bossPoll, workerPoll));
         server.setPipelineFactory(() -> {
             ChannelPipeline pipeline = Channels.pipeline();
+            pipeline.addLast("idle", new IdleStateHandler(new HashedWheelTimer(), 10, 10, 10));
             pipeline.addLast("decoder", new StringDecoder());
             pipeline.addLast("encoder", new StringEncoder());
             pipeline.addLast("handler", new Netty3PrintHandler());

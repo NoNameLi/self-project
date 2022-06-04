@@ -12,6 +12,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
 
 public class Netty4Server {
 
@@ -24,9 +25,8 @@ public class Netty4Server {
                     .childHandler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
                         protected void initChannel(NioSocketChannel ch) {// pipeline handler 顺序
-                            ch.pipeline().addLast(new StringEncoder());
-                            ch.pipeline().addLast(new StringDecoder());
-                            ch.pipeline().addLast(new Netty4ServerHandler());
+                            ch.pipeline().addLast(new IdleStateHandler(5, 5, 10))
+                                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new Netty4ServerHandler());
                         }
                     }).option(ChannelOption.SO_BACKLOG, 2048)// 半链接的队列长度，还没完成三次握手的链接
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
