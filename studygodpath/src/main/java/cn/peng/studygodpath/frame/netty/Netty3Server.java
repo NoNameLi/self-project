@@ -1,7 +1,7 @@
 package cn.peng.studygodpath.frame.netty;
 
 
-import cn.peng.studygodpath.frame.netty.handler.Netty3PrintHandler;
+import cn.peng.studygodpath.frame.netty.handler.Netty3ServerHandler;
 import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.Channels;
@@ -16,7 +16,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class Netty3Demo {
+public class Netty3Server {
 
     public static void main(String[] args) {
         ServerBootstrap server = new ServerBootstrap();
@@ -25,10 +25,10 @@ public class Netty3Demo {
         server.setFactory(new NioServerSocketChannelFactory(bossPoll, workerPoll));
         server.setPipelineFactory(() -> {
             ChannelPipeline pipeline = Channels.pipeline();
-            pipeline.addLast("idle", new IdleStateHandler(new HashedWheelTimer(), 10, 10, 10));
+            pipeline.addLast("idle", new IdleStateHandler(new HashedWheelTimer(), 10, 10, 50));
             pipeline.addLast("decoder", new StringDecoder());
             pipeline.addLast("encoder", new StringEncoder());
-            pipeline.addLast("handler", new Netty3PrintHandler());
+            pipeline.addLast("handler", new Netty3ServerHandler());
             return pipeline;
         });
         server.setOption("backlog", 2048);
@@ -36,5 +36,6 @@ public class Netty3Demo {
         server.setOption("child.tcpNoDelay", true);
         server.bind(new InetSocketAddress(1000));
         server.bind(new InetSocketAddress(2000));
+        System.out.println("server run.....");
     }
 }
