@@ -20,13 +20,9 @@ public class Request extends Package {
 
     public static int MIN_LENGTH = 4 + 2 + 2 + 4;
 
+    public static int DATA_LENGTH_OFFSET = 4;
+
     private short module;
 
     private short cmd;
-
-    private byte[] data;
-
-    public int getDataLength() {
-        return null == data ? 0 : data.length;
-    }
 }
