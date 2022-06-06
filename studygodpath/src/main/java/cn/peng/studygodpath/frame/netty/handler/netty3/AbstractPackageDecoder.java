@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.netty.handler;
+package cn.peng.studygodpath.frame.netty.handler.netty3;
 
 import cn.peng.studygodpath.frame.netty.entity.Package;
 import org.jboss.netty.buffer.ChannelBuffer;
@@ -9,7 +9,7 @@ import org.jboss.netty.handler.codec.frame.FrameDecoder;
 /**
  * netty3 自定义数据包抽象解码器
  */
-public abstract class Netty3AbstractPackageDecoder extends FrameDecoder {
+public abstract class AbstractPackageDecoder extends FrameDecoder {
     @Override
     protected Object decode(ChannelHandlerContext channelHandlerContext, Channel channel, ChannelBuffer buffer) {
         while (true) {

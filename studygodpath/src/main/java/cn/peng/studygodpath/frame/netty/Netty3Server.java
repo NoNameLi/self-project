@@ -1,9 +1,12 @@
 package cn.peng.studygodpath.frame.netty;
 
 
-import cn.peng.studygodpath.frame.netty.handler.Netty3ServerHandler;
+import cn.peng.studygodpath.frame.netty.handler.netty3.RequestDecoder;
+import cn.peng.studygodpath.frame.netty.handler.netty3.ResponseDecoder;
+import cn.peng.studygodpath.frame.netty.handler.netty3.ServerTextHandler;
 import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.channel.ChannelPipeline;
+import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
@@ -18,19 +21,37 @@ import java.util.concurrent.TimeUnit;
 
 public class Netty3Server {
 
+    /**
+     * 简单文本数据处理器
+     */
+    private static ChannelPipelineFactory simpleTextPipelineFactory = () -> {
+        ChannelPipeline pipeline = Channels.pipeline();
+        pipeline.addLast("idle", new IdleStateHandler(new HashedWheelTimer(), 10, 10, 50));
+        pipeline.addLast("decoder", new StringDecoder());
+        pipeline.addLast("encoder", new StringEncoder());
+        pipeline.addLast("handler", new ServerTextHandler());
+        return pipeline;
+    };
+
+    /**
+     * 自定义数据包 request response数据处理器
+     */
+    private static ChannelPipelineFactory customPackagePipelineFactory = () -> {
+        ChannelPipeline pipeline = Channels.pipeline();
+        pipeline.addLast("idle", new IdleStateHandler(new HashedWheelTimer(), 10, 10, 50));
+        pipeline.addLast("decoder", new RequestDecoder());
+        pipeline.addLast("encoder", new ResponseDecoder());
+        pipeline.addLast("handler", new ServerTextHandler());
+        return pipeline;
+    };
+
     public static void main(String[] args) {
         ServerBootstrap server = new ServerBootstrap();
         ThreadPoolExecutor bossPoll = new ThreadPoolExecutor(2, 2, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(100));
         ThreadPoolExecutor workerPoll = new ThreadPoolExecutor(5, 5, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<>(100));
         server.setFactory(new NioServerSocketChannelFactory(bossPoll, workerPoll));
-        server.setPipelineFactory(() -> {
-            ChannelPipeline pipeline = Channels.pipeline();
-            pipeline.addLast("idle", new IdleStateHandler(new HashedWheelTimer(), 10, 10, 50));
-            pipeline.addLast("decoder", new StringDecoder());
-            pipeline.addLast("encoder", new StringEncoder());
-            pipeline.addLast("handler", new Netty3ServerHandler());
-            return pipeline;
-        });
+//        server.setPipelineFactory(simpleTextPipelineFactory);
+        server.setPipelineFactory(customPackagePipelineFactory);
         server.setOption("backlog", 2048);
         server.setOption("child.keepAlive", true);
         server.setOption("child.tcpNoDelay", true);
@@ -38,4 +59,6 @@ public class Netty3Server {
         server.bind(new InetSocketAddress(2000));
         System.out.println("server run.....");
     }
+
+
 }

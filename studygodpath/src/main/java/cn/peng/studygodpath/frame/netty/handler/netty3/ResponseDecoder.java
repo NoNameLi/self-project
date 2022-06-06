@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.netty.handler;
+package cn.peng.studygodpath.frame.netty.handler.netty3;
 
 import cn.peng.studygodpath.frame.netty.entity.Response;
 import org.jboss.netty.buffer.ChannelBuffer;
@@ -8,7 +8,7 @@ import org.jboss.netty.buffer.ChannelBuffer;
  * 校验寻找包头
  * 校验数据长度
  */
-public class Netty3ResponseDecoder extends Netty3AbstractPackageDecoder {
+public class ResponseDecoder extends AbstractPackageDecoder {
 
     @Override
     public Object readPackage(ChannelBuffer buffer) {

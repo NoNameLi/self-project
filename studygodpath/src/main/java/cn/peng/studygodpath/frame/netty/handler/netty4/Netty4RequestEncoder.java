@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.netty.handler;
+package cn.peng.studygodpath.frame.netty.handler.netty4;
 
 import cn.peng.studygodpath.frame.netty.entity.Request;
 import io.netty.buffer.ByteBuf;

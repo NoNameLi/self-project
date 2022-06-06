@@ -1,6 +1,6 @@
 package cn.peng.studygodpath.frame.netty;
 
-import cn.peng.studygodpath.frame.netty.handler.Netty3ClientHandler;
+import cn.peng.studygodpath.frame.netty.handler.netty3.ClientTextHandler;
 import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.channel.ChannelFuture;
 import org.jboss.netty.channel.ChannelPipeline;
@@ -20,7 +20,7 @@ public class Netty3Client {
             ChannelPipeline pipeline = Channels.pipeline();
             pipeline.addLast("encoder", new StringEncoder());
             pipeline.addLast("decoder", new StringDecoder());
-            pipeline.addLast("my", new Netty3ClientHandler());
+            pipeline.addLast("my", new ClientTextHandler());
             return pipeline;
         });
         ChannelFuture connect = bootstrap.connect(new InetSocketAddress("127.0.0.1", 1000));

@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.netty.handler;
+package cn.peng.studygodpath.frame.netty.handler.netty3;
 
 import org.jboss.netty.channel.*;
 import org.jboss.netty.handler.timeout.IdleState;
@@ -7,7 +7,7 @@ import org.jboss.netty.handler.timeout.IdleStateEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Netty3ServerHandler extends SimpleChannelHandler {
+public class ServerTextHandler extends SimpleChannelHandler {
 
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 

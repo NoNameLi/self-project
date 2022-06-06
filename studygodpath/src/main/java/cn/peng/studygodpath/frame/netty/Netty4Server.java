@@ -1,7 +1,7 @@
 package cn.peng.studygodpath.frame.netty;
 
 
-import cn.peng.studygodpath.frame.netty.handler.Netty4ServerHandler;
+import cn.peng.studygodpath.frame.netty.handler.netty4.Netty4ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

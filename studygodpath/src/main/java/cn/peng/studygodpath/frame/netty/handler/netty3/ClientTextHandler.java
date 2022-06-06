@@ -1,10 +1,10 @@
-package cn.peng.studygodpath.frame.netty.handler;
+package cn.peng.studygodpath.frame.netty.handler.netty3;
 
 import org.jboss.netty.channel.*;
 
 import java.time.format.DateTimeFormatter;
 
-public class Netty3ClientHandler extends SimpleChannelHandler {
+public class ClientTextHandler extends SimpleChannelHandler {
 
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
