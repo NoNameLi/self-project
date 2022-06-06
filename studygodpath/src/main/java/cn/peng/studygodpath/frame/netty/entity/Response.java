@@ -1,6 +1,7 @@
 package cn.peng.studygodpath.frame.netty.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * <pre>
@@ -17,9 +18,10 @@ import lombok.Data;
  */
 
 @Data
+@ToString(callSuper = true)
 public class Response extends Package {
 
-    public static int MIN_LENGTH = 4 + 2 + 2 + 4 + 4;
+    public static int NOT_PACKAGE_HEAD_MIN_LENGTH = 2 + 2 + 4 + 4;
 
     public static int DATA_LENGTH_OFFSET = 8;
 
@@ -28,5 +30,14 @@ public class Response extends Package {
     private short cmd;
 
     private int stateCode;
+
+    public static Response of(Request request, int stateCode, byte[] data) {
+        Response response = new Response();
+        response.setModule(request.getModule());
+        response.setCmd(request.getCmd());
+        response.setStateCode(stateCode);
+        response.setData(data);
+        return response;
+    }
 
 }

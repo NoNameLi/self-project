@@ -25,7 +25,7 @@ public class Netty4RequestDecoder extends ByteToMessageDecoder {
         }
         int readerIndex = in.readerIndex();
         int byteNum = in.readableBytes();
-        if (byteNum >= Request.MIN_LENGTH) {
+        if (byteNum >= Request.NOT_PACKAGE_HEAD_MIN_LENGTH) {
             Request request = new Request();
             request.setModule(in.readShort());
             request.setCmd(in.readShort());

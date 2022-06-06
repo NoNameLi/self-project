@@ -6,6 +6,8 @@ import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
+import java.util.Arrays;
+
 /**
  * netty3 自定义数据包抽象解码器
  */
@@ -22,6 +24,7 @@ public abstract class AbstractPackageDecoder extends FrameDecoder {
                 buffer.resetReaderIndex();
                 buffer.readByte();
             } else {
+                System.out.println("没有找到包头");
                 return null;
             }
         }

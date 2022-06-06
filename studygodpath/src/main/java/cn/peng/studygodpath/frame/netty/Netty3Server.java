@@ -2,7 +2,8 @@ package cn.peng.studygodpath.frame.netty;
 
 
 import cn.peng.studygodpath.frame.netty.handler.netty3.RequestDecoder;
-import cn.peng.studygodpath.frame.netty.handler.netty3.ResponseDecoder;
+import cn.peng.studygodpath.frame.netty.handler.netty3.ResponseEncoder;
+import cn.peng.studygodpath.frame.netty.handler.netty3.ServerRequestHandler;
 import cn.peng.studygodpath.frame.netty.handler.netty3.ServerTextHandler;
 import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.channel.ChannelPipeline;
@@ -40,8 +41,8 @@ public class Netty3Server {
         ChannelPipeline pipeline = Channels.pipeline();
         pipeline.addLast("idle", new IdleStateHandler(new HashedWheelTimer(), 10, 10, 50));
         pipeline.addLast("decoder", new RequestDecoder());
-        pipeline.addLast("encoder", new ResponseDecoder());
-        pipeline.addLast("handler", new ServerTextHandler());
+        pipeline.addLast("encoder", new ResponseEncoder());
+        pipeline.addLast("handler", new ServerRequestHandler());
         return pipeline;
     };
 

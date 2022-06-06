@@ -23,7 +23,7 @@ public class RequestDecoder extends AbstractPackageDecoder {
 
     @Override
     public int minPackageLength() {
-        return Request.MIN_LENGTH;
+        return Request.NOT_PACKAGE_HEAD_MIN_LENGTH;
     }
 
     @Override
