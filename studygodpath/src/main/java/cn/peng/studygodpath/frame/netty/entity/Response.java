@@ -31,13 +31,17 @@ public class Response extends Package {
 
     private int stateCode;
 
-    public static Response of(Request request, int stateCode, byte[] data) {
+    public static Response of(short module, short cmd, int stateCode, byte[] data) {
         Response response = new Response();
-        response.setModule(request.getModule());
-        response.setCmd(request.getCmd());
+        response.setModule(module);
+        response.setCmd(cmd);
         response.setStateCode(stateCode);
         response.setData(data);
         return response;
+    }
+
+    public static Response of(Request request, int stateCode, byte[] data) {
+        return Response.of(request.getModule(), request.getCmd(), stateCode, data);
     }
 
 }

@@ -1,6 +1,9 @@
 package cn.peng.studygodpath.frame.netty;
 
 
+import cn.peng.studygodpath.frame.netty.handler.netty4.RequestDecoder;
+import cn.peng.studygodpath.frame.netty.handler.netty4.ResponseEncoder;
+import cn.peng.studygodpath.frame.netty.handler.netty4.ServerPackageHandler;
 import cn.peng.studygodpath.frame.netty.handler.netty4.ServerTextHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -28,7 +31,7 @@ public class Netty4Server {
         @Override
         protected void initChannel(NioSocketChannel ch) {// pipeline handler 顺序
             ch.pipeline().addLast(new IdleStateHandler(5, 5, 10))
-                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new ServerTextHandler());
+                    .addLast(new RequestDecoder()).addLast(new ResponseEncoder()).addLast(new ServerPackageHandler());
         }
     };
 
@@ -38,8 +41,8 @@ public class Netty4Server {
         EventLoopGroup workerGroup = new NioEventLoopGroup(10);
         try {
             server.group(boosGroup, workerGroup).channel(NioServerSocketChannel.class)
-                    .childHandler(simpleTextChannelInitializer)
-//                    .childHandler(customPackageChannelInitializer)
+//                    .childHandler(simpleTextChannelInitializer)
+                    .childHandler(customPackageChannelInitializer)
                     .option(ChannelOption.SO_BACKLOG, 2048)// 半链接的队列长度，还没完成三次握手的链接
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.TCP_NODELAY, true);

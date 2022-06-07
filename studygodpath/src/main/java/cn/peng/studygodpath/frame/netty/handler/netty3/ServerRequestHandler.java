@@ -3,10 +3,16 @@ package cn.peng.studygodpath.frame.netty.handler.netty3;
 import cn.peng.studygodpath.frame.netty.entity.Request;
 import cn.peng.studygodpath.frame.netty.entity.Response;
 import org.jboss.netty.channel.*;
+import org.jboss.netty.handler.timeout.IdleState;
+import org.jboss.netty.handler.timeout.IdleStateEvent;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ServerRequestHandler extends SimpleChannelHandler {
+
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
@@ -26,6 +32,20 @@ public class ServerRequestHandler extends SimpleChannelHandler {
         if (response == null)
             response = Response.of(t, 0, null);
         ctx.getChannel().write(response);
+    }
+
+    @Override
+    public void handleUpstream(ChannelHandlerContext ctx, ChannelEvent e) throws Exception {
+        if (e instanceof IdleStateEvent) {
+            IdleStateEvent se = (IdleStateEvent) e;
+            System.out.println(LocalDateTime.now().format(dateTimeFormatter) + ":" + se.getState());
+            if (se.getState() == IdleState.ALL_IDLE) {
+                ChannelFuture channelFuture = ctx.getChannel().write(Response.of((short) 0, (short) 1, (short) 1, "idle connect,will close".getBytes()));
+                channelFuture.addListener(future -> future.getChannel().close());
+            }
+        } else {
+            super.handleUpstream(ctx, e);
+        }
     }
 
     @Override

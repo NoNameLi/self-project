@@ -1,7 +1,11 @@
 package cn.peng.studygodpath.frame.netty;
 
 
-import cn.peng.studygodpath.frame.netty.handler.netty4.ServerTextHandler;
+import cn.peng.studygodpath.frame.netty.entity.Request;
+import cn.peng.studygodpath.frame.netty.handler.netty4.ClientPackageHandler;
+import cn.peng.studygodpath.frame.netty.handler.netty4.ClientTextHandler;
+import cn.peng.studygodpath.frame.netty.handler.netty4.RequestEncoder;
+import cn.peng.studygodpath.frame.netty.handler.netty4.ResponseDecoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -17,7 +21,7 @@ public class Netty4Client {
         @Override
         protected void initChannel(NioSocketChannel ch) {// pipeline handler 顺序
             ch.pipeline().addLast(new IdleStateHandler(5, 5, 10))
-                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new ServerTextHandler());
+                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new ClientTextHandler());
         }
     };
 
@@ -25,7 +29,7 @@ public class Netty4Client {
         @Override
         protected void initChannel(NioSocketChannel ch) {// pipeline handler 顺序
             ch.pipeline().addLast(new IdleStateHandler(5, 5, 10))
-                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new ServerTextHandler());
+                    .addLast(new RequestEncoder()).addLast(new ResponseDecoder()).addLast(new ClientPackageHandler());
         }
     };
 
@@ -35,11 +39,13 @@ public class Netty4Client {
         NioEventLoopGroup loopGroup = new NioEventLoopGroup();
         try {
             bootstrap.group(loopGroup).channel(NioSocketChannel.class)
-                    .handler(simpleTextChannelInitializer)
-//                    .handler(customPackageChannelInitializer)
+//                    .handler(simpleTextChannelInitializer)
+                    .handler(customPackageChannelInitializer)
             ;
-            ChannelFuture channelFuture = bootstrap.connect("192.168.0.105", 1000).sync();
-            channelFuture.channel().writeAndFlush("hello server! I am client");
+            ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 1000).sync();
+//            channelFuture.channel().writeAndFlush("hello server! I am client");
+            channelFuture.channel().writeAndFlush(Request.of((short) 1, (short) 1, null));
+            channelFuture.channel().writeAndFlush(Request.of((short) 1, (short) 2, null));
             channelFuture.channel().closeFuture().sync();
         } catch (Exception e) {
             e.printStackTrace();

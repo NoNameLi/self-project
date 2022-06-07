@@ -16,7 +16,9 @@ public class ResponseDecoder extends AbstractPackageDecoder {
         response.setCmd(in.readShort());
         response.setStateCode(in.readInt());
         int dataLength = in.readInt();
-        response.setData(dataLength > 0 ? in.readBytes(dataLength).array() : new byte[0]);
+        byte[] bytes = new byte[dataLength];
+        in.readBytes(bytes);
+        response.setData(bytes);
         return response;
     }
 
