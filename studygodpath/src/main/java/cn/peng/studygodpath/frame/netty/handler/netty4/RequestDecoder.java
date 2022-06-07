@@ -7,7 +7,7 @@ import io.netty.buffer.ByteBuf;
 /**
  * Request 解码器
  */
-public class Netty4RequestDecoder extends AbstractPackageDecoder {
+public class RequestDecoder extends AbstractPackageDecoder {
 
     @Override
     public Package readPackage(ByteBuf in) {

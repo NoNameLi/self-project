@@ -1,6 +1,6 @@
 package cn.peng.studygodpath.frame.netty;
 
-import cn.peng.studygodpath.frame.netty.handler.netty4.Netty4ClientHandler;
+import cn.peng.studygodpath.frame.netty.handler.netty4.ClientTextHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -30,7 +30,7 @@ public class Netty4ClientPoll {
         bootstrap.group(new NioEventLoopGroup()).channel(NioSocketChannel.class).handler(new ChannelInitializer<NioSocketChannel>() {
             @Override
             protected void initChannel(NioSocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new StringDecoder()).addLast(new StringEncoder()).addLast(new Netty4ClientHandler());
+                ch.pipeline().addLast(new StringDecoder()).addLast(new StringEncoder()).addLast(new ClientTextHandler());
             }
         });
         for (int i = 0; i < 10; i++) {

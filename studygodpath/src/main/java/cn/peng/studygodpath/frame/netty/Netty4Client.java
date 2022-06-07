@@ -1,7 +1,7 @@
 package cn.peng.studygodpath.frame.netty;
 
 
-import cn.peng.studygodpath.frame.netty.handler.netty4.Netty4ServerHandler;
+import cn.peng.studygodpath.frame.netty.handler.netty4.ServerTextHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -17,7 +17,7 @@ public class Netty4Client {
         @Override
         protected void initChannel(NioSocketChannel ch) {// pipeline handler 顺序
             ch.pipeline().addLast(new IdleStateHandler(5, 5, 10))
-                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new Netty4ServerHandler());
+                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new ServerTextHandler());
         }
     };
 
@@ -25,7 +25,7 @@ public class Netty4Client {
         @Override
         protected void initChannel(NioSocketChannel ch) {// pipeline handler 顺序
             ch.pipeline().addLast(new IdleStateHandler(5, 5, 10))
-                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new Netty4ServerHandler());
+                    .addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new ServerTextHandler());
         }
     };
 

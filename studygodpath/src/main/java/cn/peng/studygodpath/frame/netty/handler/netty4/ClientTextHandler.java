@@ -3,7 +3,7 @@ package cn.peng.studygodpath.frame.netty.handler.netty4;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class Netty4ClientHandler extends SimpleChannelInboundHandler<String> {
+public class ClientTextHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {

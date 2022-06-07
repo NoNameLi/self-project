@@ -10,7 +10,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Netty4ServerHandler extends SimpleChannelInboundHandler<String> {
+public class ServerTextHandler extends SimpleChannelInboundHandler<String> {
 
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 

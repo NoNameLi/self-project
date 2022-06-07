@@ -8,7 +8,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 /**
  * Request 编码器
  */
-public class Netty4RequestEncoder extends MessageToByteEncoder {
+public class RequestEncoder extends MessageToByteEncoder {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Object msg, ByteBuf out) {
