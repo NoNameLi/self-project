@@ -1,5 +1,6 @@
 package cn.peng.studygodpath.algorithm.nowcoder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,11 +34,12 @@ public class MergeIndex {
             int n = in.nextInt();
             Map<Integer, Integer> map = new HashMap<>(n);
             for (int i = 0; i < n; i++) {
-                String[] line = in.nextLine().split(" ");
-                if (map.containsKey(line[0])) {
-                    map.put(line[0], map.get(line[0]) + line[1]);
+                int a = in.nextInt();
+                int b = in.nextInt();
+                if (map.containsKey(a)) {
+                    map.put(a, map.get(a) + b);
                 } else {
-                    map.put(line[0], line[1]);
+                    map.put(a, b);
                 }
             }
             map.keySet().stream().sorted().forEach(t -> {
