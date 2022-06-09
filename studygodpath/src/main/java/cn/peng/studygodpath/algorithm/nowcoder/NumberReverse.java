@@ -2,6 +2,7 @@ package cn.peng.studygodpath.algorithm.nowcoder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.TreeSet;
 
 /**
  * 输入一个整数，将这个整数以字符串的形式逆序输出
@@ -18,5 +19,7 @@ public class NumberReverse {
         }
         String result = String.valueOf(arr);
         System.out.println(result);
+        StringBuilder sb = null;
+        sb.reverse().toString();
     }
 }
