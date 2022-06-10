@@ -15,10 +15,10 @@ public class DeleteMinChar {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String text = br.readLine();
+        char[] chars = br.readLine().toCharArray();
         int[] charNum = new int[26];
-        for (int i = 0, j = text.length(); i < j; i++) {
-            int point = text.charAt(i) - 'a';
+        for (int i = 0, j = chars.length; i < j; i++) {
+            int point = chars[i] - 'a';
             charNum[point] += 1;
         }
         int min = Integer.MAX_VALUE;
@@ -27,10 +27,14 @@ public class DeleteMinChar {
                 min = charNum[i];
             }
         }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, j = chars.length; i < j; i++) {
+            if (charNum[chars[i] - 'a'] > min) {
+                sb.append(chars[i]);
+            }
+        }
+        System.out.println(sb.toString());
     }
-
-
-
 
 
 }
