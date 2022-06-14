@@ -61,7 +61,18 @@ public class LongestPalindromicSubstring {
             sIndex = l + 1;
             eIndex = r - 1;
         }
+    }
 
+    /**
+     * 动态规划，
+     *  f{s,j} 表示从s到j 字符串的最大回文长度
+     *
+     *  Text(s) == Text(j)
+     *      f{s,j} = f{s-1,j-1} + 2
+     *  Text(s) != Text(j)
+     *      f{s,j} = Max(f{s-1,j},f{s,j-1})
+     */
+    public void longestPalindrome3(){
 
     }
 
