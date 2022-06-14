@@ -43,9 +43,8 @@ import java.io.InputStreamReader;
 public class PasswordStrength {
 
     public static void main(String[] args) throws Exception {
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        String password = br.readLine();
-        String password = "Aa12()";
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String password = br.readLine();
         System.out.println(passwordStrength(password));
     }
 
@@ -108,7 +107,7 @@ public class PasswordStrength {
         } else if (symbolCount == 1) {
             return 10;
         } else {
-            return 20;
+            return 25;
         }
 
     }
@@ -124,9 +123,10 @@ public class PasswordStrength {
     }
 
     public static int charScore(int length, int smallChar, int bigChar) {
+        int sum = smallChar + bigChar;
         if (smallChar == 0 && bigChar == 0) {
             return 0;
-        } else if (smallChar == length || bigChar == length) {
+        } else if (smallChar == sum || bigChar == sum) {
             return 10;
         } else if (smallChar > 0 && bigChar > 0) {
             return 20;
@@ -143,4 +143,6 @@ public class PasswordStrength {
             return 25;
         }
     }
+
+
 }
