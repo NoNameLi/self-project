@@ -2,19 +2,21 @@ package cn.peng.studygodpath.algorithm.nowcoder;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class IPTest {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line = null;
         int[] data = new int[7];
-        while ((line = br.readLine()) != null) {
+        while ((line = br.readLine()).length() > 0) {
             String[] ipMark = line.split("~");
             if (ipMark[0].startsWith("0.") || ipMark[0].startsWith("127.")) {
                 continue;
             }
             if (isMark(ipMark[1], data)) {
-                System.out.println(ipMark[1]);
+//                System.out.println(ipMark[1]);
                 ipType(ipMark[0], data);
             }
         }
@@ -72,13 +74,15 @@ public class IPTest {
             if (first && item == 0) {
                 return false;
             }
-            while (item > 0) {
+            int w = 8;
+            while (w > 0) {
                 if (!first && item % 2 == 1) {
                     first = true;
                 } else if (first && item % 2 == 0) {
                     return false;
                 }
                 item = item >> 1;
+                w--;
             }
         }
         return true;
@@ -90,6 +94,7 @@ public class IPTest {
         if (isFourNumber(arr)) {
             int[] numArr = toFourNumber(arr);
             if (isSmall256(numArr) && isOne(numArr)) {
+                System.out.println(mark);
                 return true;
             }
         }
