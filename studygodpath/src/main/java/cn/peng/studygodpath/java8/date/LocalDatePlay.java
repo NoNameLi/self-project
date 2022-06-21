@@ -36,7 +36,7 @@ public class LocalDatePlay {
     @Test
     public void testCal() {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime afterDateTime = LocalDateTime.parse("2021-12-07 22:41:18", dateTimeFormatter);
+        LocalDateTime afterDateTime = LocalDateTime.parse("2022-05-30 22:41:18", dateTimeFormatter);
         Period period = Period.between(afterDateTime.toLocalDate(), now.toLocalDate());
         System.out.println(period.getYears());
         System.out.println(period.getMonths());
@@ -44,6 +44,7 @@ public class LocalDatePlay {
         System.out.println(period.getChronology());
         System.out.println(period.getUnits());
         System.out.println(afterDateTime.toLocalDate().toEpochDay() - now.toLocalDate().toEpochDay());
+        System.out.print(ChronoUnit.MONTHS.between(now, afterDateTime));
     }
 
     @Test
