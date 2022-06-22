@@ -3,6 +3,7 @@ package cn.peng.studygodpath.algorithm.nowcoder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * 王强决定把年终奖用于购物，他把想买的物品分为两类：主件与附件，附件是从属于某个主件的，下表就是一些主件与附件的例子：
@@ -38,8 +39,9 @@ import java.io.InputStreamReader;
 public class ShoppingList {
 
     public static void main(String[] args) throws IOException {
-
+        method1();
     }
+
 
     public static void method1() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -47,8 +49,8 @@ public class ShoppingList {
 
         int money = Integer.parseInt(s[0]);
         int n = Integer.parseInt(s[1]);
-        int[] price = new int[n + 1], value = new int[n + 1], belong = new int[n + 1];
-
+        int[] price = new int[n + 1], value = new int[n + 1], belong = new int[n + 1], master = new int[n + 1];
+        int masterSize = 1;
         for (int i = 1; i <= n; i++) {
             String[] goods = br.readLine().split(" ");
             price[i] = Integer.parseInt(goods[0]);
@@ -58,6 +60,8 @@ public class ShoppingList {
         int[][] dp = new int[n + 1][money + 1];
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j <= money; j++) {
+                // 不要此主品
+                dp[i][j] = dp[i - 1][j];
                 if (belong[i] != 0) continue;
                 int f1 = 0, f2 = 0;
                 for (int m = 1; m <= n; m++) {
@@ -69,8 +73,7 @@ public class ShoppingList {
                         }
                     }
                 }
-                // 不要此主品
-                dp[i][j] = dp[i - 1][j];
+
                 // 要主
                 if (j >= price[i]) {
                     dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - price[i]] + value[i]);
@@ -112,6 +115,8 @@ public class ShoppingList {
         int[] dp = new int[money + 1];
         for (int i = 1; i <= n; i++) {
             for (int j = money; j >= 0; j--) {
+                // 不要此主品
+                dp[j] = dp[j];
                 if (belong[i] != 0) continue;
                 int f1 = 0, f2 = 0;
                 for (int m = 1; m <= n; m++) {
@@ -123,8 +128,6 @@ public class ShoppingList {
                         }
                     }
                 }
-                // 不要此主品
-                dp[j] = dp[j];
                 // 要主
                 if (j >= price[i]) {
                     dp[j] = Math.max(dp[j], dp[j - price[i]] + value[i]);
