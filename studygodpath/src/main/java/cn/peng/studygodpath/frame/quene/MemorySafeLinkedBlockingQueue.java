@@ -5,9 +5,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author: Administrator
- * @CreateTime:2022-06-27 10:28
- * QDescription:
  */
 public class MemorySafeLinkedBlockingQueue<E> extends LinkedBlockingQueue<E> {
 
