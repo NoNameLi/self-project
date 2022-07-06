@@ -10,14 +10,14 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>./studygodpath</module>
-        <module>./mini-spring</module>
-        <module>./Jerseyrestdemo</module>
-        <module>./nacos-example</module>
-        <module>./spring-boot-practice</module>
-        <module>./webflux</module>
-        <module>./websocker</module>
-        <module>jvm-agent</module>
+        <module>./studygodpath</module> <!--各种练习的代码-->
+        <module>./mini-spring</module> <!--自己实现spring 控制反转、依赖注入-->
+        <module>./Jerseyrestdemo</module> <!--jersery rest 风格接口-->
+        <module>./nacos-example</module> <!--nacos demo-->
+        <module>./spring-boot-practice</module> <!--spring boot 练习项目-->
+        <module>./webflux</module> <!--异步非阻塞的响应式编程项目 springwebflux-->
+        <module>./websocker</module> <!--websocket 实现-->
+        <module>jvm-agent</module> <!--jvm 代理插件-->
     </modules>
 
     <properties>
