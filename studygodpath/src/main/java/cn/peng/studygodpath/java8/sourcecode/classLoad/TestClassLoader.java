@@ -1,7 +1,6 @@
 package cn.peng.studygodpath.java8.sourcecode.classLoad;
 
 import cn.peng.studygodpath.java8.sourcecode.classLoad.custom.DiskClassLoader;
-import cn.peng.studygodpath.java8.sourcecode.classLoad.loadSquac.Childer;
 import cn.peng.studygodpath.java8.sourcecode.classLoad.loadSquac.Children;
 import org.junit.Test;
 
@@ -14,12 +13,29 @@ public class TestClassLoader {
 
 
     @Test
+    public void testReferenceLoad() {// 测试引用导致加载的情况
+        // 直接引用
+        // new
+        // 调用静态变量、静态方法
+        // 反射
+        // 限定名
+        // 间接引用
+        // 调用静态变量、静态方法，值加载声明所属的类，如下，值会加载父类
+//        String sv = Children.sv;
+        // 数组不会加载数组的元素类。数组类是jvm动态生成的另一个类
+//        Children[] childrens = new Children[10];
+        // 基本类型的静态常量 不会引起任何类的加载
+        int max = Children.MAX;
+    }
+
+
+    @Test
     public void testClassLoadSquac() {
         System.out.println("class 加载顺序：");
-        Class clazz = Childer.class;
-        System.out.println(Childer.ss2);
+        Class clazz = Children.class;
+        System.out.println(Children.ss2);
         System.out.println("实例化顺序：");
-        new Childer();
+        new Children();
     }
 
     @Test
