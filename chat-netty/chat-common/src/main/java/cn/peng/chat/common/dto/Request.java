@@ -24,6 +24,8 @@ public class Request extends Package {
 
     public static int DATA_LENGTH_OFFSET = 4;
 
+    public static int NOT_PACKAGE_HEAD_MIN_LENGTH = 2 + 2 + 4;
+
     public static Request of(short module, short cmd, byte[] data) {
         Request request = new Request();
         request.setModule(module);
@@ -32,13 +34,4 @@ public class Request extends Package {
         return request;
     }
 
-    @Override
-    public int getNotPackageHeadMinLength() {
-        return 2 + 2 + 4;
-    }
-
-    @Override
-    public int getDataLengthOffset() {
-        return 4;
-    }
 }

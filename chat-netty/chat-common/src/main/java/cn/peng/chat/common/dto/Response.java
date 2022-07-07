@@ -23,6 +23,10 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Response extends Package {
 
+    public static int DATA_LENGTH_OFFSET = 8;
+
+    public static int NOT_PACKAGE_HEAD_MIN_LENGTH = 2 + 2 + 4 + 4;
+
     private int stateCode;
 
     public static Response of(short module, short cmd, int stateCode, byte[] data) {
@@ -38,13 +42,4 @@ public class Response extends Package {
         return Response.of(request.getModule(), request.getCmd(), stateCode, data);
     }
 
-    @Override
-    public int getNotPackageHeadMinLength() {
-        return 2 + 2 + 4 + 4;
-    }
-
-    @Override
-    public int getDataLengthOffset() {
-        return 8;
-    }
 }

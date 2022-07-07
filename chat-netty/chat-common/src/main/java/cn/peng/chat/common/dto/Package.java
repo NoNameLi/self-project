@@ -16,7 +16,4 @@ public abstract class Package {
         return null == data ? 0 : data.length;
     }
 
-    public abstract int getNotPackageHeadMinLength();
-
-    public abstract int getDataLengthOffset();
 }
