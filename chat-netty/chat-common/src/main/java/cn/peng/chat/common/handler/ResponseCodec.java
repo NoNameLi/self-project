@@ -1,7 +1,7 @@
 package cn.peng.chat.common.handler;
 
-import cn.peng.chat.common.dto.Package;
-import cn.peng.chat.common.dto.Response;
+import cn.peng.chat.common.data.Package;
+import cn.peng.chat.common.data.Response;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 

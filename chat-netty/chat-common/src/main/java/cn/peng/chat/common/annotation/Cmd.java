@@ -7,5 +7,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface Cmd {
 
-    short cmd() default 0;
+    short value() default 0;
+
+    boolean needLogin() default true;
 }

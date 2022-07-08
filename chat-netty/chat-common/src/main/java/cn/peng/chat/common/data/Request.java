@@ -1,4 +1,4 @@
-package cn.peng.chat.common.dto;
+package cn.peng.chat.common.data;
 
 
 import lombok.Data;

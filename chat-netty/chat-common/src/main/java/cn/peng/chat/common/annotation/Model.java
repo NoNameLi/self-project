@@ -6,6 +6,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Model {
-    short model() default 0;
+    short value() default 0;
 
+    boolean needLogin() default true;
 }

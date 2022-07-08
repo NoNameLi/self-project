@@ -1,4 +1,4 @@
-package cn.peng.chat.common.dto;
+package cn.peng.chat.common.data;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,8 +38,8 @@ public class Response extends Package {
         return response;
     }
 
-    public static Response of(Request request, int stateCode, byte[] data) {
-        return Response.of(request.getModule(), request.getCmd(), stateCode, data);
+    public static Response of(Request request, ResponseStateCode stateCode, byte[] data) {
+        return Response.of(request.getModule(), request.getCmd(), stateCode.getValue(), data);
     }
 
 }

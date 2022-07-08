@@ -2,7 +2,6 @@ package cn.peng.chat.server;
 
 import cn.peng.chat.common.handler.RequestCodec;
 import cn.peng.chat.common.handler.ResponseCodec;
-import cn.peng.chat.server.config.SpringConfiguration;
 import cn.peng.chat.server.handler.ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -13,14 +12,13 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
 
+@Component
 public class ChatServer {
-
-    public static void main(String[] args) {
-
+    public void start() {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup worker = new NioEventLoopGroup();
         EventLoopGroup businessWorker = new NioEventLoopGroup();
@@ -29,7 +27,7 @@ public class ChatServer {
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
-                    protected void initChannel(NioSocketChannel ch) throws Exception {
+                    protected void initChannel(NioSocketChannel ch) {
                         ch.pipeline().addLast(new IdleStateHandler(60, 60, 120))
                                 .addLast(new RequestCodec())
                                 .addLast(new ResponseCodec())
@@ -42,13 +40,11 @@ public class ChatServer {
 
         try {
             ChannelFuture channelFuture = bootstrap.bind(new InetSocketAddress(8888)).sync();
-            AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
             System.out.println("server success start....");
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             boss.shutdownGracefully();
             worker.shutdownGracefully();
         }
-
     }
 }
