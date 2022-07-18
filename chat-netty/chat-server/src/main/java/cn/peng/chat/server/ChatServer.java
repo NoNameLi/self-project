@@ -12,12 +12,16 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
 
 @Component
 public class ChatServer {
+    private static Logger logger = LoggerFactory.getLogger(ChatServer.class);
+
     public void start() {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup worker = new NioEventLoopGroup();
@@ -40,7 +44,7 @@ public class ChatServer {
 
         try {
             ChannelFuture channelFuture = bootstrap.bind(new InetSocketAddress(8888)).sync();
-            System.out.println("server success start....");
+            logger.info("server run.....");
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             boss.shutdownGracefully();
