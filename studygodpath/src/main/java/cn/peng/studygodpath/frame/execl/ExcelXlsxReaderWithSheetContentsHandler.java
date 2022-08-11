@@ -2,7 +2,7 @@ package cn.peng.studygodpath.frame.execl;
 
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.openxml4j.opc.PackageAccess;
-import org.apache.poi.util.SAXHelper;
+//import org.apache.poi.util.SAXHelper;
 import org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable;
 import org.apache.poi.xssf.eventusermodel.XSSFReader;
 import org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler;
@@ -75,13 +75,13 @@ public class ExcelXlsxReaderWithSheetContentsHandler {
 	}
 
 	private void processSheet(StylesTable styles, ReadOnlySharedStringsTable strings,InputStream sheetInputStream ) throws Exception{
-		XMLReader sheetParser= SAXHelper.newXMLReader();
-		if (handler!=null){
-			sheetParser.setContentHandler(new XSSFSheetXMLHandler(styles,strings,handler,false));
-		}else {
-			sheetParser.setContentHandler(new XSSFSheetXMLHandler(styles,strings,new SimpleSheetContentsHandler(),false));
-		}
-		sheetParser.parse(new InputSource(sheetInputStream));
+//		XMLReader sheetParser= SAXHelper.newXMLReader();
+//		if (handler!=null){
+//			sheetParser.setContentHandler(new XSSFSheetXMLHandler(styles,strings,handler,false));
+//		}else {
+//			sheetParser.setContentHandler(new XSSFSheetXMLHandler(styles,strings,new SimpleSheetContentsHandler(),false));
+//		}
+//		sheetParser.parse(new InputSource(sheetInputStream));
 	}
 
 	public static class SimpleSheetContentsHandler implements XSSFSheetXMLHandler.SheetContentsHandler{
