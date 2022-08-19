@@ -24,6 +24,15 @@ public class CountDownLatchPlay {
             System.out.println("boss 开始开会");
         }).start();
 
+        new Thread(() -> {
+            try {
+                coutDownLatch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("boss 开始开会2");
+        }).start();
+
         for (int i = 0; i < 5; i++) {
             new Thread(() -> {
                 System.out.println("员工到场");
