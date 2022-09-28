@@ -22,19 +22,30 @@ public class LeetCode80 {
 
     public static void main(String[] args) {
         int[] arr = {0, 0, 1, 1, 1, 1, 2, 3, 3};
-        System.out.println(solution(arr));
+        System.out.println(removeDuplicates(arr));
         System.out.println(Arrays.toString(arr));
 
         int[] arr2 = {1, 1, 1, 2, 2, 3};
-        System.out.println(solution(arr2));
+        System.out.println(removeDuplicates(arr2));
         System.out.println(Arrays.toString(arr2));
     }
 
-    public static int solution(int[] arr) {
+    public int removeDuplicates2(int[] nums) {
+        //[1,1,1,2,2,3]
+        int i = 0;
+        for (int n : nums) {
+            if (i < 2 || n > nums[i - 2]) {
+                nums[i++] = n;
+            }
+        }
+        return i;
+    }
+
+
+    public static int removeDuplicates(int[] arr) {
         int length = arr.length;
         int current = length - 1, i = current;
         for (; i >= 0; i--) {
-            // 0 x x x
             if (arr[i] == arr[current]) {
                 continue;
             } else {
