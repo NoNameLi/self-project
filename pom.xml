@@ -18,7 +18,8 @@
         <module>./webflux</module> <!--异步非阻塞的响应式编程项目 springwebflux-->
         <module>./websocker</module> <!--websocket 实现-->
         <module>jvm-agent</module> <!--jvm 代理插件-->
-        <module>chat-netty</module> <!--netty 实现的 聊天小项目-->
+        <module>chat-netty</module>
+        <module>storm-demo</module> <!--netty 实现的 聊天小项目-->
     </modules>
 
     <properties>
