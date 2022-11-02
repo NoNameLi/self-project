@@ -17,6 +17,8 @@ import java.util.Map;
 public class WordCountBolt extends BaseRichBolt {
     private HashMap<String, Long> wordCount = null;
 
+    private int show = 0;
+
     @Override
     public void prepare(Map<String, Object> map, TopologyContext topologyContext, OutputCollector outputCollector) {
         wordCount = new HashMap<>();
@@ -26,7 +28,10 @@ public class WordCountBolt extends BaseRichBolt {
     public void execute(Tuple tuple) {
         String word = tuple.getStringByField("word");
         wordCount.compute(word, (k, v) -> (v == null) ? 1 : v + 1);
-        System.out.println(word + "\t" + wordCount.get(word));
+        show = (show + 1) % 5;
+        if (show == 0) {
+            System.out.println(wordCount);
+        }
     }
 
     @Override

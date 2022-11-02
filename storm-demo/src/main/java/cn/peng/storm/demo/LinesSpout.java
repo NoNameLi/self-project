@@ -29,7 +29,7 @@ public class LinesSpout extends BaseRichSpout {
 
     @Override
     public void nextTuple() {
-        Utils.sleep(5000);
+        Utils.sleep(500);
         int num = new Random().nextInt(lines.length);
         String line = lines[num];
         out.emit(new Values(line));
