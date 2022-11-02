@@ -6,7 +6,8 @@ import java.util.ResourceBundle;
 /**
  * Created by remote on 2018/4/14.
  */
-public class LoadResource {
+public class
+LoadResource {
 
     protected ResourceBundle resourceBundle = ResourceBundle.getBundle("application");
 
