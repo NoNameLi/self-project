@@ -8,7 +8,7 @@
         <artifactId>all-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>nacos-example</artifactId>
+    <artifactId>nacos-org.example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 

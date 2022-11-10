@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableNacosDiscovery(globalProperties = @NacosProperties(serverAddr = "127.0.0.1:8848"))//启用 Nacos Spring 的配置管理服务
-@NacosPropertySource(dataId = "example", autoRefreshed = true)
+@NacosPropertySource(dataId = "org.example", autoRefreshed = true)
 public class NacosConfig {
 }

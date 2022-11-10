@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 
 /**
- * Config service example
+ * Config service org.example
  *
  * @author Nacos
  *
