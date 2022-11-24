@@ -36,7 +36,7 @@ public class HandleMaxRepeatProblem_v0 {
     private static volatile boolean startConsumer = false;
 
     /**
-     * 消费者运行保证
+     * 消费者运行保证LongAdder
      */
     private static volatile boolean consumerRunning = true;
 

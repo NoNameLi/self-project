@@ -19,6 +19,8 @@
         <module>./websocker</module> <!--websocket 实现-->
         <module>jvm-agent</module> <!--jvm 代理插件-->
         <module>chat-netty</module> <!--netty 实现的 聊天小项目-->
+        <module>storm-demo</module>
+        <module>native-picocli-demo</module> <!--storm 尝试-->
     </modules>
 
     <properties>
