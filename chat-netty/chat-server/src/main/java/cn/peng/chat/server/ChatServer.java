@@ -1,5 +1,6 @@
 package cn.peng.chat.server;
 
+import cn.peng.chat.biz.TestBean;
 import cn.peng.chat.common.handler.RequestCodec;
 import cn.peng.chat.common.handler.ResponseCodec;
 import cn.peng.chat.server.handler.ServerHandler;
@@ -21,6 +22,10 @@ import java.net.InetSocketAddress;
 @Component
 public class ChatServer {
     private static Logger logger = LoggerFactory.getLogger(ChatServer.class);
+
+    public ChatServer(TestBean testBean) {
+        System.out.println(testBean);
+    }
 
     public void start() {
         EventLoopGroup boss = new NioEventLoopGroup();

@@ -12,6 +12,11 @@ import java.util.Arrays;
 public class ModelCmdBeanProcess implements BeanPostProcessor {
 
     @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        return null;
+    }
+
+    @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Arrays.stream(bean.getClass().getInterfaces()).filter(face -> face.isAnnotationPresent(Model.class))
                 .forEach(face -> {
@@ -19,6 +24,6 @@ public class ModelCmdBeanProcess implements BeanPostProcessor {
                     Arrays.stream(face.getDeclaredMethods()).filter(method -> method.isAnnotationPresent(Cmd.class))
                             .forEach(method -> ModelCmdInvokeHolder.put(ModelCmdInvoke.of(model, method.getAnnotation(Cmd.class), bean, method)));
                 });
-        return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
+        return null;
     }
 }

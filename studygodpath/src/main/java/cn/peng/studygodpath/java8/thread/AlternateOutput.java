@@ -1,6 +1,7 @@
 package cn.peng.studygodpath.java8.thread;
 
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: Administrator
@@ -13,12 +14,53 @@ public class AlternateOutput {
     public static void main(String[] args) throws Exception {
 //        methodOne();
 //        methodTwo();
-        methodThree();
+//        methodThree();
+        methodFour();
     }
 
     enum Run {T1, T2}
 
     private static volatile Run run = Run.T1;
+
+    static class Res {
+        public String name;
+        public String sex;
+    }
+
+    public static void methodFour() {
+        Res res = new Res();
+        new Thread(() -> {
+            int count = 0;
+            while (true) {
+                if (run == Run.T1) {
+                    if (count == 0) {
+                        res.name = "小红";
+                        res.sex = "女";
+                    } else {
+                        res.name = "小军";
+                        res.sex = "男";
+                    }
+                    count = (count + 1) % 2;
+                    run = Run.T2;
+                }
+            }
+        }).start();
+
+        new Thread(() -> {
+            while (true) {
+                if (run == Run.T2) {
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(res.name + ":" + res.sex);
+                    run = Run.T1;
+                }
+            }
+        }).start();
+    }
+
 
     public static void methodThree() throws Exception {
         new Thread(() -> {
