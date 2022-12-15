@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 public final class Singleton7 implements Serializable {
     private static final long serialVersionUID = -8776481248554447375L;
-    private static Singleton7 instance = null;
+    private static volatile Singleton7 instance = null;
 
     private Singleton7(){}
 
