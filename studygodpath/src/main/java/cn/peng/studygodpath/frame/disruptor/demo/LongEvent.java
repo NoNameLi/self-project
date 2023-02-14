@@ -9,4 +9,8 @@ public class LongEvent {
 
     private Long value;
 
+    public void clear() {
+        this.value = null;
+    }
+
 }

@@ -1,10 +1,13 @@
 package cn.peng.studygodpath.frame.disruptor.demo;
 
+import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
 
 public class LongEventProduct {
 
-    private RingBuffer<LongEvent> ringBuffer;
+    private final RingBuffer<LongEvent> ringBuffer;
+
+    private final EventTranslatorOneArg<LongEvent, Long> translate = (event, sequence, data) -> event.setValue(data);
 
     public LongEventProduct(RingBuffer<LongEvent> ringBuffer) {
         this.ringBuffer = ringBuffer;
@@ -18,5 +21,10 @@ public class LongEventProduct {
         } finally {
             ringBuffer.publish(sequence);
         }
+    }
+
+    public void onDataByTranslator(Long data) {
+        ringBuffer.publishEvent(translate, data);
+
     }
 }
