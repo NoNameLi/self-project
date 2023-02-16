@@ -8,6 +8,7 @@
  * jodatime：    时间友好封装 时间和日期值变得易于管理、操作和理解
  * log:         日志框架
  * lombok:      冗余代码消除
+ * mapstruct    对象转换框架
  * netSimulation 网络代码模拟
  * netty        高性能网络框架
  * protoc       高压缩数据压缩工具
