@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.execl;
+package cn.peng.studygodpath.frame.excel;
 
 import org.apache.poi.hssf.eventusermodel.*;
 import org.apache.poi.hssf.eventusermodel.dummyrecord.LastCellOfRowDummyRecord;

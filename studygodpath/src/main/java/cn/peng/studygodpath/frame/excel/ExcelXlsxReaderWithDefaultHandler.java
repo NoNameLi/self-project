@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.execl;
+package cn.peng.studygodpath.frame.excel;
 
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.BuiltinFormats;

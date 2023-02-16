@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.execl;
+package cn.peng.studygodpath.frame.excel;
 
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.openxml4j.opc.PackageAccess;
@@ -8,8 +8,6 @@ import org.apache.poi.xssf.eventusermodel.XSSFReader;
 import org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler;
 import org.apache.poi.xssf.model.StylesTable;
 import org.apache.poi.xssf.usermodel.XSSFComment;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
 
 import java.io.IOException;
 import java.io.InputStream;

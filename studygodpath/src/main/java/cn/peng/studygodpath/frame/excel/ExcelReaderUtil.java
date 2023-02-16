@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.frame.execl;
+package cn.peng.studygodpath.frame.excel;
 
 import java.io.File;
 import java.io.FileInputStream;
