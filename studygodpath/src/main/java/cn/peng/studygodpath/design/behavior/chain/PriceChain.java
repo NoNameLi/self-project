@@ -8,13 +8,13 @@ import java.util.Map;
  * @CreateTime:2023-02-17 17:58
  * QDescription:
  */
-public interface BusinessChain {
+public interface PriceChain {
 
-    void addFilter(BusinessProcessor filter);
+    void addProcess(Processor filter);
 
-    List<BusinessProcessor> listFilter();
+    List<Processor> listProcess();
 
-    void doFilter(Map<String, Object> context);
+    void process(Map<String, Object> context);
 
     void release();
 

@@ -16,21 +16,15 @@ public class Test {
 
 
     public static void execAllFilter() {
-        BusinessChainImpl chain = new BusinessChainImpl();
+        ProcessorPriceChain chain = new ProcessorPriceChain();
         chain.addFilter(new DefaultProcessor());
-        chain.addFilter(new BusinessProcessor() {
-            @Override
-            public void doFilter(Map<String, Object> context, BusinessChain chain) {
-                context.put("first", "1");
-                chain.doFilter(context);
-            }
+        chain.addFilter((context, chain1) -> {
+            context.put("first", "1");
+            chain1.doFilter(context);
         });
-        chain.addFilter(new BusinessProcessor() {
-            @Override
-            public void doFilter(Map<String, Object> context, BusinessChain chain) {
-                context.put("second", "2");
+        chain.addFilter((context, chain12) -> {
+            context.put("second", "2");
 //                chain.doFilter();
-            }
         });
         HashMap<String, Object> map = new HashMap<>();
         chain.doFilter(map);

@@ -7,8 +7,8 @@ import java.util.Map;
  * @CreateTime:2023-02-18 09:14
  * QDescription:
  */
-public interface BusinessProcessor {
+public interface Processor {
 
-    void doFilter(Map<String,Object> context, BusinessChain chain);
+    void process(Map<String,Object> context, PriceChain chain);
 
 }

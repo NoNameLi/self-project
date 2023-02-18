@@ -7,9 +7,9 @@ import java.util.Map;
  * @CreateTime:2023-02-18 09:20
  * QDescription:
  */
-public class DefaultProcessor implements BusinessProcessor {
+public class DefaultProcessor implements Processor {
     @Override
-    public void doFilter(Map<String, Object> context, BusinessChain chain) {
+    public void doFilter(Map<String, Object> context, PriceChain chain) {
         // do next FilterHandler
         chain.doFilter(context);
     }
