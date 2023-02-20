@@ -17,17 +17,17 @@ public class Test {
 
     public static void execAllFilter() {
         ProcessorPriceChain chain = new ProcessorPriceChain();
-        chain.addFilter(new DefaultProcessor());
-        chain.addFilter((context, chain1) -> {
+        chain.addProcess(new DefaultProcessor());
+        chain.addProcess((context, chain1) -> {
             context.put("first", "1");
-            chain1.doFilter(context);
+            chain1.process(context);
         });
-        chain.addFilter((context, chain12) -> {
+        chain.addProcess((context, chain12) -> {
             context.put("second", "2");
 //                chain.doFilter();
         });
         HashMap<String, Object> map = new HashMap<>();
-        chain.doFilter(map);
+        chain.process(map);
         System.out.println(map);
     }
 
