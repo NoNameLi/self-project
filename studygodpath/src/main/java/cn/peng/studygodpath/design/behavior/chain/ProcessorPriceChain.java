@@ -3,9 +3,7 @@ package cn.peng.studygodpath.design.behavior.chain;
 import java.util.*;
 
 /**
- * @Author: Administrator
- * @CreateTime:2023-02-18 09:16
- * QDescription:
+ * 非线程安全设计
  */
 public class ProcessorPriceChain implements PriceChain {
 
@@ -41,6 +39,6 @@ public class ProcessorPriceChain implements PriceChain {
 
     @Override
     public void release() {
-
+        iterator = null;
     }
 }
