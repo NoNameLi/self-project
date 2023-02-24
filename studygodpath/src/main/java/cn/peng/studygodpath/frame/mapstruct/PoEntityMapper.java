@@ -12,8 +12,9 @@ import java.time.LocalDate;
  * QDescription:
  */
 @Mapper(uses = CustomerAttrConvert.class, imports = {LocalDate.class})
+//@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)  使用spring bean管理
 public interface PoEntityMapper {
-    public static PoEntityMapper INSTALL = Mappers.getMapper(PoEntityMapper.class);
+    PoEntityMapper INSTALL = Mappers.getMapper(PoEntityMapper.class);
 
     @Mapping(source = "state", target = "state1")
     @Mapping(source = "luckyChar", target = "luckyChar1")

@@ -1,6 +1,6 @@
-package cn.peng.studygodpath.design.behavior.stragety;
+package cn.peng.studygodpath.design.behavior.strategy;
 
-public interface RewardStragety {
+public interface RewardStrategy {
 
     /**
      * 计算激励

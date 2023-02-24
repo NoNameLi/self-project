@@ -1,4 +1,4 @@
-package cn.peng.studygodpath.design.behavior.stragety;
+package cn.peng.studygodpath.design.behavior.strategy;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,19 +12,19 @@ public class Reward {
     /** 计算奖励的依据数据 */
     private Object data;
 
-    private RewardStragety stragety;
+    private RewardStrategy stragety;
 
     public Double compute() {
         return stragety.computeReward(data);
     }
 
     public static void main(String[] args) {
-        Reward reward = new Reward("test", new StragetyA());
+        Reward reward = new Reward("test", new StrategyA());
         System.out.println(reward.compute());
-        reward = new Reward("test", new StragetyB());
+        reward = new Reward("test", new StrategyB());
         System.out.println(reward.compute());
 
-        reward = new Reward("test", new StragetyC());
+        reward = new Reward("test", new StrategyC());
         System.out.println(reward.compute());
     }
 
