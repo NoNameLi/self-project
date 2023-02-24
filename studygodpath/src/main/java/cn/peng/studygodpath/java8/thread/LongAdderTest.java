@@ -25,7 +25,5 @@ public class LongAdderTest {
         ThreadLocalRandom localRandom = ThreadLocalRandom.current();
         localRandom.nextInt();
         localRandom.nextInt();
-        ThreadLocal threadLocal = new ThreadLocal();
-
     }
 }
