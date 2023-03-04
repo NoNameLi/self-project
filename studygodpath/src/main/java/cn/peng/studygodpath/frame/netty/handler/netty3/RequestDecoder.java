@@ -14,6 +14,8 @@ public class RequestDecoder extends AbstractPackageDecoder {
     @Override
     public Object readPackage(ChannelBuffer buffer) {
         Request request = new Request();
+        // 读取三个byte 同理 读取 6 7 9
+//        buffer.readUnsignedShort() << 8 + buffer.readUnsignedByte();
         request.setModule(buffer.readShort());
         request.setCmd(buffer.readShort());
         int dataLength = buffer.readInt();
