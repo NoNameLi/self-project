@@ -38,10 +38,12 @@ public abstract class AbstractPackageDecoder extends ByteToMessageDecoder {
             in.resetReaderIndex();
             if (loadDataLength <= dataLength) {
                 out.add(this.readPackage(in));
+                return;
             }
         }
         // 数据不够，等待
-        return;
+        in.readerIndex(in.readerIndex() - 4);// 半包情况 要回到包头位置下次判断包头
+
     }
 
     /**
