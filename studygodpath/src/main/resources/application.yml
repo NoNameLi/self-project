@@ -6,7 +6,8 @@ server:
 
 logging:
   file: D:\\weixiuhui_upload\\log.log
-  level: org.spirngframework.web: DEBUG
+  level:
+    org.spirngframework.web: DEBUG
 
 spring:
   datasource:
@@ -25,3 +26,16 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
         format_sql: true
+
+# gRPC有关的配置，这里只需要配置服务端口号
+grpc:
+  server:
+    port: 9898
+  client:
+    # gRPC配置的名字，GrpcClient注解会用到
+    local-grpc-server:
+      # gRPC 本地服务端地址 也可注册中心
+      address: 'static://127.0.0.1:9898'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
