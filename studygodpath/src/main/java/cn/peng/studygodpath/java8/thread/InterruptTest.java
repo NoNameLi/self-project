@@ -1,7 +1,9 @@
 package cn.peng.studygodpath.java8.thread;
 
 import cn.hutool.core.util.RandomUtil;
+import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -44,6 +46,37 @@ public class InterruptTest {
         interruptTread.start();
         interruptTread.interrupt();
         System.out.println("reentrantLock lockInterruptibly 线程中断");
+    }
+
+    @Test
+    public static void waitInterrupt() throws InterruptedException {
+        Object lock = new Object();
+
+        Thread thread = new Thread(() -> {
+            System.out.println(Thread.currentThread().getName() + " run....");
+            synchronized (lock) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (Thread.currentThread().isInterrupted()) {
+                    System.out.println(Thread.currentThread().getName() + "被中断");
+                } else {
+                    System.out.println(Thread.currentThread().getName() + "被唤醒");
+                }
+            }
+        });
+        thread.start();
+
+        TimeUnit.SECONDS.sleep(1);
+        thread.interrupt();
+//        new Thread(() -> {
+//            synchronized (lock) {
+//                lock.notifyAll();
+//            }
+//        }).start();
+        thread.join();
     }
 
 
