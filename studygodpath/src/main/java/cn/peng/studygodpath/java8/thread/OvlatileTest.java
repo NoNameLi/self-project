@@ -6,8 +6,13 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class OvlatileTest {
+
+    public static Boolean normalStop = false;
+
+    private AtomicBoolean atomicBoolean = new AtomicBoolean();
 
     public static volatile Boolean stop = false;
 
@@ -36,7 +41,7 @@ public class OvlatileTest {
     }
 
 
-    @Test
+    @org.junit.Test
     public void testVolatileIntAdd() throws InterruptedException {
         Runnable runnable = () -> {
             for (int i = 0; i < 1000; i++) {
@@ -93,6 +98,29 @@ public class OvlatileTest {
         Thread.sleep(1000);
         stop = true;
         System.out.println("now, in main thread stop is: " + stop);
+        thread.join();
+    }
+
+    @org.junit.Test
+    public void testYeid() throws Exception {
+        Thread thread = new Thread(() -> {
+            int i = 0;
+            while (!normalStop) {
+                i++;
+                // 通过 yield sleep 会刷新线程cpu缓存值
+//                Thread.yield();
+//                try {
+//                    Thread.sleep(1);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+            }
+            System.out.println("Thread stop i=" + i);
+        });
+        thread.start();
+        Thread.sleep(1000);
+        normalStop = true;
+        System.out.println("now, in main thread stop is: " + normalStop);
         thread.join();
     }
 
