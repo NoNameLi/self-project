@@ -6,11 +6,13 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 public class First {
 
+    @Test
     public static void first() throws InterruptedException {
         Observer<String> observer = new Observer<String>() {
             @Override
@@ -64,6 +66,7 @@ public class First {
         TimeUnit.SECONDS.sleep(10);
     }
 
+    @Test
     public static void second() {
         Disposable hello_world = Flowable.just("Hello world").subscribe(System.out::println);
 

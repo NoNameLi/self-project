@@ -12,7 +12,6 @@ public class ThreadPoolPlay {
     public void createThreadPool() {
 
         ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(4, 8, 8, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10));
-
     }
 
 

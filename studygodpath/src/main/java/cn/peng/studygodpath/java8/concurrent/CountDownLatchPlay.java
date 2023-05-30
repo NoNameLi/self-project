@@ -13,25 +13,27 @@ public class CountDownLatchPlay {
 
 
     @Test
-    public void testDemo() {
+    public void testDemo() throws InterruptedException {
 
-        new Thread(() -> {
+        Thread meetOne = new Thread(() -> {
             try {
                 coutDownLatch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             System.out.println("boss 开始开会");
-        }).start();
+        });
 
-        new Thread(() -> {
+        Thread meetTwo = new Thread(() -> {
             try {
                 coutDownLatch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             System.out.println("boss 开始开会2");
-        }).start();
+        });
+        meetOne.start();
+        meetTwo.start();
 
         for (int i = 0; i < 5; i++) {
             new Thread(() -> {
@@ -39,7 +41,8 @@ public class CountDownLatchPlay {
                 coutDownLatch.countDown();
             }).start();
         }
-
+        meetOne.join();
+        meetTwo.join();
     }
 
 
