@@ -1,6 +1,5 @@
 package cn.practice.spring.boot.controller.rest.agent;
 
-import com.sun.tools.attach.VirtualMachine;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,9 +15,9 @@ public class AgentController {
     @GetMapping("/load")
     public void loadAgent(@RequestParam("path") String path,
                           @RequestParam("args") String args) throws Exception {
-        VirtualMachine machine = VirtualMachine.attach(getCurrentPid());
-        machine.loadAgent(path, args);
-        machine.detach();
+//        VirtualMachine machine = VirtualMachine.attach(getCurrentPid());
+//        machine.loadAgent(path, args);
+//        machine.detach();
     }
 
     @GetMapping("/restore")

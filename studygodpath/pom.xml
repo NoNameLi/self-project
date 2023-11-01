@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <java.version>1.8</java.version>
+        <java.version>8</java.version>
         <aspectj.version>1.7.4</aspectj.version>
         <cglib.version>3.1</cglib.version>
         <slf4j.version>1.7.7</slf4j.version>
@@ -106,8 +106,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <!-- 指定Java compiler编译时，使用的source与target版本。 注: 不同的source、target版本,编译后产生的Class版本号可能不同 -->
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -419,14 +419,6 @@
             <groupId>net.devh</groupId>
             <artifactId>grpc-spring-boot-starter</artifactId>
             <version>${grpc.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun</groupId>
-            <artifactId>tools</artifactId>
-            <version>1.8</version>
-            <scope>system</scope>
-            <systemPath>C:/self software/Java/jdk1.8.0_77/lib/tools.jar</systemPath>
         </dependency>
 
     </dependencies>

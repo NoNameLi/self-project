@@ -1,3 +1,8 @@
+project:
+  module:
+    enable: true
+
+
 management:
   endpoints:
     web:
